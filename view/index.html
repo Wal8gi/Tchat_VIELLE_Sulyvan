@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=fr>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+    <title>Beautiful tchat</title>
+</head>
+
+<body>
+    <h1>Welcome to the best tchat you never seen!!</h1>
+                    
+        <div id ="messagesDiv">
+        </div>
+        <div>
+            Zone de tchat
+        </div>
+        <div>
+            
+        </div>
+        <div><hr class="zonetchat" /></div>
+        <input type = "text" id = "messageInput" hidden>
+        <button id = "nbusersBtn" class= "nbusers" hidden>Number df Users</button>
+        <button id = "sendBtn" class= "send" hidden>Send</button>
+        <button id = "valBtn" class = "val">Enter your pseudo</button>
+
+        <script src= "/socket.io/socket.io.js"></script>
+        <script>
+            var messagesDiv = document.getElementById('messagesDiv')
+            var sendBtn = document.getElementById('sendBtn')
+            var messageInput = document.getElementById('messageInput')
+            var valBtn = document.getElementById('valBtn')
+            var nbusersBtn = document.getElementById('nbusersBtn')
+            var socket = io()
+
+            valBtn.addEventListener('click', () => {
+                pseudo = prompt("Enter your pseudo")
+                    
+                while(pseudo == '')
+                {
+                    pseudo = prompt("Retry")
+
+                }
+
+                socket.emit('new_client', pseudo)            
+                messageInput.hidden = false
+                sendBtn.hidden = false
+                nbusersBtn.hidden = false
+                valBtn.hidden = true
+
+            })
+            sendBtn.addEventListener('click', () => {
+                console.log(messageInput)
+                if(messageInput.value != '')
+                    socket.emit('message', messageInput.value)
+                messageInput.value = ''
+
+            })
+
+            nbusersBtn.addEventListener('click', () => {
+                socket.emit('message', "Numbers of users : " /*+ client*/ )
+            })
+            
+            socket.on('message', (data) => {
+                console.log('message received : ', data)
+                messagesDiv.innerHTML += ('<p>'+ data +'</p>')
+
+            })
+                
+        </script>
+        
+    </body>
+</html>

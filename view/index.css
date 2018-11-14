@@ -1,0 +1,57 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background-color: rgb(68, 2, 48);
+}
+
+.nbusers
+{
+    
+}
+
+.zonetchat
+{
+    clear: both;
+	position: absolute;
+	margin-top :10px;
+	margin-left: 250px;
+	height: 800px;
+    width : 5px;
+	background: black;
+
+}
+
+div
+{
+    clear: both;
+    position: absolute;
+    margin-top: -10px;
+    margin-left: 0px;
+    height: 200px;
+    width: 200px;
+}
+
+.val
+{
+    
+    padding-top: 1px;
+    padding-left: 10px;
+    height: 30px;
+    background-color: white;
+    color: blue;
+}
+
+.send
+{
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 1px;
+    padding-left: 10px;
+    height: 30px;
+    background-color: black;
+    color:red;
+}
